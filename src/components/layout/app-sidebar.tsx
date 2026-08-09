@@ -60,7 +60,7 @@ export default function AppSidebar() {
       variant='floating'
       // The floating panel reads as a panel through its fill alone: rounder than
       // the primitive's rounded-lg, and without the shadow/ring it adds.
-      className='text-white [&>[data-slot=sidebar-inner]]:bg-gradient-to-b [&>[data-slot=sidebar-inner]]:from-[#D8433E] [&>[data-slot=sidebar-inner]]:from-60% [&>[data-slot=sidebar-inner]]:to-[#8B0000] dark:[&>[data-slot=sidebar-inner]]:bg-gradient-to-b dark:[&>[data-slot=sidebar-inner]]:from-[#660000] dark:[&>[data-slot=sidebar-inner]]:from-60% dark:[&>[data-slot=sidebar-inner]]:to-[#330000] [&>[data-slot=sidebar-inner]]:rounded-2xl [&>[data-slot=sidebar-inner]]:shadow-[0_8px_30px_rgb(0,0,0,0.08)] [&>[data-slot=sidebar-inner]]:ring-0 [&>[data-slot=sidebar-inner]]:overflow-hidden [&>[data-slot=sidebar-inner]]:relative'
+      className='!bg-transparent text-white [&>[data-slot=sidebar-inner]]:bg-gradient-to-b [&>[data-slot=sidebar-inner]]:from-[#D8433E] [&>[data-slot=sidebar-inner]]:from-60% [&>[data-slot=sidebar-inner]]:to-[#8B0000] dark:[&>[data-slot=sidebar-inner]]:bg-gradient-to-b dark:[&>[data-slot=sidebar-inner]]:from-[#660000] dark:[&>[data-slot=sidebar-inner]]:from-60% dark:[&>[data-slot=sidebar-inner]]:to-[#330000] [&>[data-slot=sidebar-inner]]:rounded-2xl [&>[data-slot=sidebar-inner]]:shadow-[0_8px_30px_rgb(0,0,0,0.08)] [&>[data-slot=sidebar-inner]]:ring-0 [&>[data-slot=sidebar-inner]]:overflow-hidden [&>[data-slot=sidebar-inner]]:relative'
     >
       <div className='relative z-10 flex flex-col h-full'>
         <SidebarHeader className='p-3 group-data-[collapsible=icon]:p-2 group-data-[collapsible=icon]:pt-4'>
