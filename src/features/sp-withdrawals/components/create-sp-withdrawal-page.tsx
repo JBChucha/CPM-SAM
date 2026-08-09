@@ -447,7 +447,7 @@ export default function CreateSpWithdrawalPage() {
                       value={searchQuery}
                       onChange={(event) => setSearchQuery(event.target.value)}
                       aria-label='ค้นหาสินค้า'
-                      className='pl-9'
+                      className='bg-white pl-9 dark:bg-background'
                     />
                   </div>
 
@@ -472,11 +472,18 @@ export default function CreateSpWithdrawalPage() {
                         variant='outline'
                         size='sm'
                         onClick={handleApplyRecommended}
+                        className='bg-white dark:bg-background'
                       >
                         <Icons.checks />
                         ใส่จำนวนแนะนำทั้งหมด
                       </Button>
-                      <Button type='button' variant='outline' size='sm' onClick={handleClearAll}>
+                      <Button
+                        type='button'
+                        variant='outline'
+                        size='sm'
+                        onClick={handleClearAll}
+                        className='bg-white dark:bg-background'
+                      >
                         <Icons.trash />
                         ล้างทั้งหมด
                       </Button>
