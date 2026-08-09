@@ -12,6 +12,7 @@ import {
   Mulish,
   Playfair_Display,
   Noto_Sans_Mono,
+  Noto_Sans_Thai,
   Outfit,
   Source_Code_Pro,
   Space_Mono
@@ -57,6 +58,16 @@ const fontMullish = Mulish({
 const fontInter = Inter({
   subsets: ['latin'],
   variable: '--font-inter'
+});
+
+/**
+ * Inter has no Thai subset, so Thai glyphs are served by Noto Sans Thai.
+ * Both are listed in `--font-sans` (see styles/theme.css): Inter covers
+ * Latin/digits, Noto Sans Thai covers the Thai range.
+ */
+const fontNotoSansThai = Noto_Sans_Thai({
+  subsets: ['latin', 'thai'],
+  variable: '--font-noto-sans-thai'
 });
 
 const fontArchitectsDaughter = Architects_Daughter({
@@ -111,6 +122,7 @@ export const fontVariables = cn(
   fontNotoMono.variable,
   fontMullish.variable,
   fontInter.variable,
+  fontNotoSansThai.variable,
   fontArchitectsDaughter.variable,
   fontDMSans.variable,
   fontFiraCode.variable,

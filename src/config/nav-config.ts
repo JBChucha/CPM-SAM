@@ -1,4 +1,4 @@
-import { NavGroup } from '@/types';
+import { NavGroup, NavItem } from '@/types';
 
 /**
  * Navigation configuration with RBAC support
@@ -33,165 +33,95 @@ import { NavGroup } from '@/types';
  * Note: The `visible` function is deprecated but still supported for backward compatibility.
  * Use the `access` property for new items.
  */
+const HOME: NavItem = {
+  title: 'หน้าหลัก',
+  url: '/dashboard/overview',
+  icon: 'dashboard',
+  isActive: false,
+  items: []
+};
+
+const JOURNAL: NavItem = {
+  title: 'วารสารประจำปี',
+  url: '/dashboard/journal',
+  icon: 'book',
+  isActive: false,
+  items: []
+};
+
+const CHANGE_PASSWORD: NavItem = {
+  title: 'เปลี่ยนรหัสผ่าน',
+  url: '/dashboard/change-password',
+  icon: 'key',
+  isActive: false,
+  items: []
+};
+
+const CONTACT: NavItem = {
+  title: 'ติดต่อเรา',
+  url: '/dashboard/contact',
+  icon: 'world',
+  isActive: false,
+  items: []
+};
+
 export const navGroups: NavGroup[] = [
   {
-    label: 'Overview',
+    label: 'เมนูหลัก',
     items: [
+      HOME,
       {
-        title: 'Dashboard',
-        url: '/dashboard/overview',
-        icon: 'dashboard',
-        isActive: false,
-        shortcut: ['d', 'd'],
-        items: []
-      },
-      {
-        title: 'Workspaces',
-        url: '/dashboard/workspaces',
-        icon: 'workspace',
+        title: 'เหรียญและของรางวัล',
+        url: '/dashboard/rewards',
+        icon: 'coins',
         isActive: false,
         items: []
       },
       {
-        title: 'Teams',
-        url: '/dashboard/workspaces/team',
-        icon: 'teams',
-        isActive: false,
-        items: [],
-        access: { requireOrg: true }
-      },
-      {
-        title: 'Product',
-        url: '/dashboard/product',
-        icon: 'product',
-        shortcut: ['p', 'p'],
+        title: 'ใบแจ้งหนี้ (Invoice)',
+        url: '/dashboard/invoices',
+        icon: 'invoice',
         isActive: false,
         items: []
       },
       {
-        title: 'Users',
-        url: '/dashboard/users',
-        icon: 'teams',
-        shortcut: ['u', 'u'],
-        isActive: false,
-        items: []
-      },
-      {
-        title: 'Kanban',
-        url: '/dashboard/kanban',
-        icon: 'kanban',
-        shortcut: ['k', 'k'],
-        isActive: false,
-        items: []
-      },
-      {
-        title: 'Chat',
-        url: '/dashboard/chat',
-        icon: 'chat',
-        shortcut: ['c', 'c'],
+        title: 'ข่าวสารและโปรโมชั่น',
+        url: '/dashboard/news',
+        icon: 'news',
         isActive: false,
         items: []
       }
     ]
   },
   {
-    label: 'Elements',
-    items: [
-      {
-        title: 'Forms',
-        url: '#',
-        icon: 'forms',
-        isActive: true,
-        items: [
-          {
-            title: 'Basic Form',
-            url: '/dashboard/forms/basic',
-            icon: 'forms',
-            shortcut: ['f', 'f']
-          },
-          {
-            title: 'Multi-Step Form',
-            url: '/dashboard/forms/multi-step',
-            icon: 'forms'
-          },
-          {
-            title: 'Sheet & Dialog',
-            url: '/dashboard/forms/sheet-form',
-            icon: 'forms'
-          },
-          {
-            title: 'Advanced Patterns',
-            url: '/dashboard/forms/advanced',
-            icon: 'forms'
-          }
-        ]
-      },
-      {
-        title: 'React Query',
-        url: '/dashboard/react-query',
-        icon: 'code',
-        isActive: false,
-        items: []
-      },
-      {
-        title: 'Icons',
-        url: '/dashboard/elements/icons',
-        icon: 'palette',
-        isActive: false,
-        items: []
-      }
-    ]
-  },
-  {
-    label: '',
-    items: [
-      {
-        title: 'Pro',
-        url: '#',
-        icon: 'pro',
-        isActive: true,
-        items: [
-          {
-            title: 'Exclusive',
-            url: '/dashboard/exclusive',
-            icon: 'exclusive',
-            shortcut: ['e', 'e']
-          }
-        ]
-      },
-      {
-        title: 'Account',
-        url: '#',
-        icon: 'account',
-        isActive: true,
-        items: [
-          {
-            title: 'Profile',
-            url: '/dashboard/profile',
-            icon: 'profile',
-            shortcut: ['m', 'm']
-          },
-          {
-            title: 'Notifications',
-            url: '/dashboard/notifications',
-            icon: 'notification',
-            shortcut: ['n', 'n']
-          },
-          {
-            title: 'Billing',
-            url: '/dashboard/billing',
-            icon: 'billing',
-            shortcut: ['b', 'b'],
-            access: { requireOrg: true }
-          },
-          {
-            title: 'Login',
-            shortcut: ['l', 'l'],
-            url: '/',
-            icon: 'login'
-          }
-        ]
-      }
-    ]
+    label: 'ทั่วไป',
+    items: [JOURNAL, CONTACT, CHANGE_PASSWORD]
   }
 ];
+
+/**
+ * Trimmed menu used by the order-detail screen, which the reference system
+ * reaches from a context where only these three destinations stay available.
+ */
+export const compactNavGroups: NavGroup[] = [
+  {
+    label: 'เมนูหลัก',
+    items: [HOME]
+  },
+  {
+    label: 'ทั่วไป',
+    items: [JOURNAL, CHANGE_PASSWORD]
+  }
+];
+
+/** Routes rendered with `compactNavGroups` instead of the full agent menu. */
+const COMPACT_NAV_PATTERNS = [
+  // A purchase order by id — /dashboard/purchase-orders/create keeps the full menu.
+  /^\/dashboard\/purchase-orders\/(?!create$)[^/]+$/
+];
+
+export function getNavGroupsForPath(pathname: string): NavGroup[] {
+  return COMPACT_NAV_PATTERNS.some((pattern) => pattern.test(pathname))
+    ? compactNavGroups
+    : navGroups;
+}

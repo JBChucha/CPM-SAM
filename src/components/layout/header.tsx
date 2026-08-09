@@ -1,32 +1,31 @@
 import React from 'react';
 import { SidebarTrigger } from '../ui/sidebar';
-import { Separator } from '../ui/separator';
 import { Breadcrumbs } from '../breadcrumbs';
-import SearchInput from '../search-input';
-import { ThemeSelector } from '../themes/theme-selector';
-import { ThemeModeToggle } from '../themes/theme-mode-toggle';
-import CtaGithub from './cta-github';
+import { UserProfileMenu } from './user-profile-menu';
 import { NotificationCenter } from '@/features/notifications/components/notification-center';
 
+/**
+ * App header: sidebar toggle + breadcrumbs on the left, notifications and the
+ * signed-in user on the right. The user control is an avatar-only button;
+ * light/dark mode and the language switch live inside its dropdown.
+ *
+ * It is its own rounded block on the page's gradient wash — a flat surface
+ * fill, no border and no shadow, matching the sidebar panel.
+ */
 export default function Header() {
   return (
-    <header className='bg-background/60 sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between gap-2 backdrop-blur-md md:h-14'>
+    <header
+      data-slot='app-header'
+      className='bg-white dark:bg-card shadow-[0_8px_30px_rgb(0,0,0,0.08)] sticky top-2 z-20 flex h-16 shrink-0 items-center justify-between gap-2 rounded-2xl md:h-14'
+    >
       <div className='flex items-center gap-2 px-4'>
-        <SidebarTrigger className='-ml-1' />
-        <Separator orientation='vertical' className='mr-2 h-4' />
+        <SidebarTrigger className='border-border/70 size-9 rounded-full border' />
         <Breadcrumbs />
       </div>
 
       <div className='flex items-center gap-2 px-4'>
-        <CtaGithub />
-        <div className='hidden md:flex'>
-          <SearchInput />
-        </div>
-        <ThemeModeToggle />
-        <div className='hidden sm:block'>
-          <ThemeSelector />
-        </div>
         <NotificationCenter />
+        <UserProfileMenu />
       </div>
     </header>
   );

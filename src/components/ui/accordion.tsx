@@ -1,7 +1,7 @@
 import { Accordion as AccordionPrimitive } from '@base-ui/react/accordion';
 
 import { cn } from '@/lib/utils';
-import { IconChevronDown, IconChevronUp } from '@tabler/icons-react';
+import { IconChevronDown } from '@tabler/icons-react';
 
 function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
   return (
@@ -37,11 +37,7 @@ function AccordionTrigger({ className, children, ...props }: AccordionPrimitive.
         {children}
         <IconChevronDown
           data-slot='accordion-trigger-icon'
-          className='pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden'
-        />
-        <IconChevronUp
-          data-slot='accordion-trigger-icon'
-          className='pointer-events-none hidden shrink-0 group-aria-expanded/accordion-trigger:inline'
+          className='pointer-events-none shrink-0 transition-transform duration-300 ease-(--ease-accordion) group-aria-expanded/accordion-trigger:-rotate-180 motion-reduce:transition-none'
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -52,7 +48,7 @@ function AccordionContent({ className, children, ...props }: AccordionPrimitive.
   return (
     <AccordionPrimitive.Panel
       data-slot='accordion-content'
-      className='overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up'
+      className='overflow-hidden text-sm duration-300 ease-(--ease-accordion) data-open:animate-accordion-down data-closed:animate-accordion-up motion-reduce:animate-none'
       {...props}
     >
       <div

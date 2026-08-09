@@ -11,6 +11,7 @@
     "build": "next build",
     "start": "next start",
     "cleanup": "node scripts/cleanup.js",
+    "portal:shots": "node scripts/capture-portal-shots.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix && bun format",

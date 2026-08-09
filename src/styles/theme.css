@@ -2,6 +2,7 @@
 @import './themes/claude.css';
 @import './themes/discord.css';
 @import './themes/supabase.css';
+@import './themes/cp-meiji.css';
 @import './themes/vercel.css';
 @import './themes/mono.css';
 @import './themes/notebook.css';
@@ -29,5 +30,25 @@ body {
   --font-mono: initial;
   --font-serif: initial;
   /* Apply font-family - will now resolve from html's [data-theme] variables */
+  font-family: var(--font-sans);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   CP-Meiji brand typography — Inter for every theme.
+
+   next/font puts its `--font-*` variables on <body> (the class list
+   lives there), so the override has to sit on <body> too — pointing
+   `--font-sans` at a variable that only exists on <body> would make
+   it invalid anywhere higher up.
+
+   `html[data-theme] body` (0,1,2) outranks the `[data-theme] body`
+   (0,1,1) reset above, so it wins for every theme.
+
+   Inter ships no Thai subset; Noto Sans Thai follows it in the stack
+   and supplies the Thai glyphs.
+   ───────────────────────────────────────────────────────────── */
+body,
+html[data-theme] body {
+  --font-sans: var(--font-inter), var(--font-noto-sans-thai), ui-sans-serif, system-ui, sans-serif;
   font-family: var(--font-sans);
 }

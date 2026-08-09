@@ -2,9 +2,13 @@
  * Default theme that loads when no user preference is set
  * Change this value to set a different default theme
  */
-export const DEFAULT_THEME = 'vercel';
+export const DEFAULT_THEME = 'cp-meiji';
 
 export const THEMES = [
+  {
+    name: 'CP-Meiji',
+    value: 'cp-meiji'
+  },
   {
     name: 'Claude',
     value: 'claude'

@@ -207,7 +207,9 @@ function InfobarProvider({
               ...style
             } as React.CSSProperties
           }
-          className={cn('group/infobar-wrapper flex flex-1 w-full', className)}
+          // min-w-0: without it this flex child keeps its min-width:auto and wide
+          // page content pushes the layout past the viewport instead of scrolling.
+          className={cn('group/infobar-wrapper flex w-full min-w-0 flex-1', className)}
           {...props}
         >
           {children}

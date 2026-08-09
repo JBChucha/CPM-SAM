@@ -81,24 +81,53 @@
   animation: reveal 0.4s ease-in-out forwards;
 }
 
+/* Easing for the Accordion expand/collapse. Fast out of the gate, long soft
+   landing — reads smoother than ease-out on tall panels. */
+:root {
+  --ease-accordion: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
 /* Base UI sets --accordion-panel-height on Accordion.Panel, but tw-animate-css's
    accordion keyframes only read the radix-era variable. Redefine them (later in
    the cascade, so these win) with a Base UI fallback so expand/collapse animates
-   instead of snapping to `auto`. */
+   instead of snapping to `auto`. The opacity ramp keeps the content from looking
+   like it is being wiped by the clipping edge. */
 @keyframes accordion-down {
   from {
     height: 0;
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
   }
   to {
     height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
+    opacity: 1;
   }
 }
 
 @keyframes accordion-up {
   from {
     height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
   }
   to {
     height: 0;
+    opacity: 0;
   }
+}
+
+/* Hide Clerk keyless mode floating banner & Next.js dev portals */
+#clerk-components,
+#clerk-keyless-banner,
+.clerk-keyless-banner,
+[id^='clerk-keyless-banner'],
+nextjs-portal {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }

@@ -7,7 +7,7 @@ function PageSkeleton() {
     <div
       role='status'
       aria-label='Loading page'
-      className='flex flex-1 animate-pulse flex-col gap-4 p-4 md:px-6'
+      className='flex flex-1 animate-pulse flex-col gap-4 p-4 md:px-0'
     >
       <div className='flex items-center justify-between'>
         <div>
@@ -42,7 +42,7 @@ export default function PageContainer({
 }) {
   if (!access) {
     return (
-      <div role='status' className='flex flex-1 items-center justify-center p-4 md:px-6'>
+      <div role='status' className='flex flex-1 items-center justify-center p-4 md:px-0'>
         {accessFallback ?? (
           <div className='text-muted-foreground text-center text-lg'>
             You do not have access to this page.
@@ -57,7 +57,7 @@ export default function PageContainer({
   const hasHeader = pageTitle || pageHeaderAction;
 
   return (
-    <div className='flex flex-1 flex-col px-4 pt-2 pb-4 md:px-6 md:pt-4'>
+    <div className='flex min-w-0 flex-1 flex-col px-4 pt-2 pb-4 md:px-0 md:pt-4'>
       {hasHeader && (
         <div className='mb-4 flex items-start justify-between gap-4'>
           <Heading

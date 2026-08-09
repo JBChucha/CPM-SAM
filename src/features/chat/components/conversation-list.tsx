@@ -32,7 +32,7 @@ export function ConversationList({ conversations, selectedId, onSelect }: Conver
   }, [conversations, search]);
 
   return (
-    <div className='border-border/40 bg-background/75 hidden h-full flex-col gap-4 overflow-hidden rounded-2xl border p-3 backdrop-blur lg:col-start-1 lg:col-end-2 lg:flex lg:rounded-3xl lg:p-4'>
+    <div className='border-border/60 bg-background/75 hidden h-full flex-col gap-4 overflow-hidden rounded-2xl border p-3 backdrop-blur lg:col-start-1 lg:col-end-2 lg:flex lg:rounded-3xl lg:p-4'>
       <div className='flex items-center justify-between gap-3'>
         <div>
           <p className='text-foreground text-sm font-semibold'>Messenger</p>
@@ -43,7 +43,7 @@ export function ConversationList({ conversations, selectedId, onSelect }: Conver
         </div>
         <Badge
           variant='outline'
-          className='bg-primary/15 text-primary hover:bg-primary/15 hover:text-primary border-border/50 rounded-full border px-3 py-1 text-[0.7rem] tracking-[0.24em] uppercase'
+          className='bg-primary/15 text-primary hover:bg-primary/15 hover:text-primary border-border/70 rounded-full border px-3 py-1 text-[0.7rem] tracking-[0.24em] uppercase'
         >
           Live
         </Badge>
@@ -63,7 +63,7 @@ export function ConversationList({ conversations, selectedId, onSelect }: Conver
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder='Search conversations'
-          className='border-border/40 bg-background/60 text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-primary/40 w-full rounded-2xl pl-10 text-sm focus-visible:ring-2'
+          className='border-border/60 bg-background/60 text-foreground placeholder:text-muted-foreground/70 focus-visible:ring-primary/40 w-full rounded-2xl pl-10 text-sm focus-visible:ring-2'
         />
       </div>
 
@@ -88,12 +88,12 @@ export function ConversationList({ conversations, selectedId, onSelect }: Conver
                 'focus-visible:ring-primary/50 group focus-visible:ring-offset-background relative flex w-full items-start gap-3 rounded-2xl border border-transparent p-3 text-left transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
                 isActive
                   ? 'border-primary/40 bg-primary/10'
-                  : 'bg-background/70 hover:border-border/40 hover:bg-muted/40'
+                  : 'bg-background/70 hover:border-border/60 hover:bg-muted/40'
               )}
               role='listitem'
             >
               <div className='relative shrink-0'>
-                <Avatar className='border-border/40 bg-background/80 text-foreground h-10 w-10 rounded-2xl border'>
+                <Avatar className='border-border/60 bg-background/80 text-foreground h-10 w-10 rounded-2xl border'>
                   <AvatarFallback className='bg-primary/15 text-primary rounded-2xl text-sm font-medium'>
                     {conversation.initials}
                   </AvatarFallback>

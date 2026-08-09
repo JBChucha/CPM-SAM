@@ -8,6 +8,7 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
 import { useBreadcrumbs } from '@/hooks/use-breadcrumbs';
+import { isAvailableRoute } from '@/config/available-routes';
 import { Icons } from '@/components/icons';
 import { Fragment } from 'react';
 
@@ -22,7 +23,12 @@ export function Breadcrumbs() {
           <Fragment key={item.title}>
             {index !== items.length - 1 && (
               <BreadcrumbItem className='hidden md:block'>
-                <BreadcrumbLink href={item.link}>{item.title}</BreadcrumbLink>
+                {/* Ancestors without a real page render as plain text, not links */}
+                {isAvailableRoute(item.link) ? (
+                  <BreadcrumbLink href={item.link}>{item.title}</BreadcrumbLink>
+                ) : (
+                  <span className='text-muted-foreground'>{item.title}</span>
+                )}
               </BreadcrumbItem>
             )}
             {index < items.length - 1 && (

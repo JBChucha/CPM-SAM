@@ -2,7 +2,7 @@ import KBar from '@/components/kbar';
 import AppSidebar from '@/components/layout/app-sidebar';
 import Header from '@/components/layout/header';
 import { InfoSidebar } from '@/components/layout/info-sidebar';
-import { InfobarProvider } from '@/components/ui/infobar';
+import { InfobarProvider, InfobarInset } from '@/components/ui/infobar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
@@ -22,12 +22,19 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const defaultOpen = cookieStore.get('sidebar_state')?.value === 'true';
   return (
     <KBar>
-      <SidebarProvider defaultOpen={defaultOpen}>
+      {/* Roomier than the primitive's 14rem so the menu rows breathe */}
+      <SidebarProvider
+        defaultOpen={defaultOpen}
+        style={{ '--sidebar-width': '16rem' } as React.CSSProperties}
+      >
         <AppSidebar />
-        <SidebarInset>
+        {/* A transparent gutter: the header and the page each float as their own
+            card, matching the sidebar panel. Left padding is the sidebar's own. */}
+        <SidebarInset className='gap-2 bg-transparent p-2 md:pl-2'>
           <Header />
           <InfobarProvider defaultOpen={false}>
-            {children}
+            {/* No card around the page: content sits straight on the body's wash */}
+            <InfobarInset className='bg-transparent'>{children}</InfobarInset>
             <InfoSidebar side='right' />
           </InfobarProvider>
         </SidebarInset>
