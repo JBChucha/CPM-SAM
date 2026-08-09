@@ -72,8 +72,7 @@ export function PortalScreenCard({ screen }: { screen: PortalScreenWithGroup }) 
       {isReady ? (
         <div className='text-brand mt-3 flex items-center gap-1.5 text-xs font-medium'>
           <span>เปิดหน้าจอใหม่</span>
-          <span className='sr-only'>(เปิดในแท็บใหม่)</span>
-          <Icons.externalLink className='size-3.5' />
+          <Icons.arrowRight className='size-3.5' />
         </div>
       ) : (
         <Badge variant='outline' className='text-muted-foreground mt-3 w-fit'>
@@ -98,10 +97,9 @@ export function PortalScreenCard({ screen }: { screen: PortalScreenWithGroup }) 
     );
   }
 
-  // Opens in its own tab so the portal stays put behind it — it is the index of
-  // the review session, and the screens have no way back to it.
+  // Opens in the same tab so it acts as normal navigation.
   return (
-    <Link href={screen.href} target='_blank' rel='noopener noreferrer' className={className}>
+    <Link href={screen.href} className={className}>
       {content}
     </Link>
   );

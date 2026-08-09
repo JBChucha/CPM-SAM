@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -23,7 +24,7 @@ export function SidebarBrand() {
         <SidebarMenuButton
           size='lg'
           className='h-14 gap-3 bg-white dark:bg-white/10 text-black dark:text-white hover:bg-white dark:hover:bg-white/10 active:bg-white dark:active:bg-white/10 rounded-xl'
-          render={<button type='button' aria-label='Smart Agent Management' />}
+          render={<Link href='/portal' aria-label='Smart Agent Management' />}
         >
           {/* The artwork carries its own red field, so no background wrapper here */}
           <div className='aspect-square size-11 shrink-0 overflow-hidden rounded-xl group-data-[collapsible=icon]:size-8'>
